@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name></display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+<!-- Spring 的主加载文件-->  
+    <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>  
+            /WEB-INF/classes/applicationContext.xml  
+        </param-value>  
+    </context-param>  
+    <listener>  
+        <listener-class>  
+            org.springframework.web.context.ContextLoaderListener  
+        </listener-class>  
+    </listener>   
+ 
+
+
+	<!-- 配置SpringMVC 核心 Servlet 映射 *.action 请求 -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 通知DispatcherServlet去指定的目录下加载springmvc.xml配置文件 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:applicationContext.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 注册spring提供的针对POST请求的中文乱码问题 -->
+<filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+</filter>	
+
+<filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>   
+  
+	
+	
+</web-app>

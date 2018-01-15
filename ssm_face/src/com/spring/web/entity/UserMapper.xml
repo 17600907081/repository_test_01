@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间名字 自定义 -->
+
+<mapper namespace="com.spring.web.entity.User">
+	<!-- 查询所有的用户 -->
+	<select id="selectAllUsers" resultType="com.spring.web.entity.User" >
+		select * from face
+	</select>
+
+
+</mapper>
